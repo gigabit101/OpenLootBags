@@ -3,6 +3,7 @@ package gigabit101.OpenLootBags.compat.jei;
 import com.google.common.collect.ImmutableList;
 import gigabit101.OpenLootBags.OpenLootBags;
 import gigabit101.OpenLootBags.api.LootMap;
+import gigabit101.OpenLootBags.api.OpenLootBagsApi;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
@@ -50,14 +51,10 @@ public class LootbagsRecipeWrapper implements IRecipeWrapper
     }
 
     @Override
-    public void drawInfo(@Nonnull Minecraft minecraft, int i, int i1, int i2, int i3) {
-
-    }
+    public void drawInfo(@Nonnull Minecraft minecraft, int i, int i1, int i2, int i3) {}
 
     @Override
-    public void drawAnimations(@Nonnull Minecraft minecraft, int i, int i1) {
-
-    }
+    public void drawAnimations(@Nonnull Minecraft minecraft, int i, int i1) {}
 
     @Nullable
     @Override

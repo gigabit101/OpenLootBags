@@ -47,8 +47,13 @@ public class OpenLootBagsApi
                     {
                         if(map.name.matches(name))
                         {
-                            int random = world.rand.nextInt(OpenLootBagsApi.lootMaps.size());
-                            bagInv[i] = OpenLootBagsApi.lootMaps.get(random).getStack();
+//                            List<ItemStack> stackList = getBagLoot(stack);
+                            int random = world.rand.nextInt(getBagLoot(stack).size());
+                            //TODO remove debug
+                            System.out.print("  Random = " + random);
+                            System.out.print("  StackList size = " + getBagLoot(stack).size());
+
+                            bagInv[i] = getBagLoot(stack).get(random).copy();
                             didChange = true;
                             break;
                         }
@@ -71,10 +76,13 @@ public class OpenLootBagsApi
             String name = bag.getName(stack);
             for(LootMap map : OpenLootBagsApi.lootMaps)
             {
-                if (name.matches(map.getName()))
+                List<ItemStack> stackList = new ArrayList<ItemStack>();
+                for(int i = 0; i < OpenLootBagsApi.lootMaps.size(); i++)
                 {
-                    List<ItemStack> stackList = new ArrayList<ItemStack>();
-                    stackList.add(map.getStack());
+                    if (map.getName().matches(name))
+                    {
+                        stackList.add(map.getStack().copy());
+                    }
                     return stackList;
                 }
             }
