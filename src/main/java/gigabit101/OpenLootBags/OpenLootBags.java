@@ -32,10 +32,11 @@ public class OpenLootBags
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
-        OpenLootBagsApi.addBagType("common", 10000F);
-        OpenLootBagsApi.addBagType("uncommon", 90500F);
+        OpenLootBagsApi.addBagType("common", 10000);
+        OpenLootBagsApi.addBagType("uncommon", 90500);
+        OpenLootBagsApi.addBagType("rare", 50900);
+        OpenLootBagsApi.addBagType("epic", 20600);
 
-        OpenLootBagsApi.registerLootStack(new ItemStack(Items.REDSTONE));
 
         lootbag = new ItemLootBag();
         GameRegistry.register(lootbag);

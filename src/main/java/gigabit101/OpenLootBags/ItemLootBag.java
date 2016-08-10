@@ -34,23 +34,15 @@ public class ItemLootBag extends Item implements IColorable
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack itemStack)
-    {
-        int meta = itemStack.getItemDamage();
-        if (meta < 0 || meta >= OpenLootBagsApi.BAG_TYPES_MAP.size())
-        {
-            meta = 0;
-        }
-                                                    //TODO use getName
-        return super.getUnlocalizedName() + "." + OpenLootBagsApi.BAG_TYPES_MAP;
-    }
-
-    @Override
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> subItems)
     {
-        for (int meta = 0; meta < OpenLootBagsApi.BAG_TYPES_MAP.size(); ++meta)
+        for (int meta = 0; meta < OpenLootBagsApi.BAG_TYPES.size(); ++meta)
         {
-            subItems.add(new ItemStack(item, 1, meta));
+            ItemStack stack = new ItemStack(item, 1, meta);
+            String name = OpenLootBagsApi.BAG_TYPES.get(meta);
+            ItemNbtHelper.setString(stack, "type", name);
+            ItemNbtHelper.setInt(stack, "colour", OpenLootBagsApi.BAG_TYPES_MAP.get(name));
+            subItems.add(stack);
         }
     }
 
@@ -93,30 +85,37 @@ public class ItemLootBag extends Item implements IColorable
         }
     }
 
-    //TODO use getColor
     @Override
     public int getColorFromItemStack(ItemStack par1ItemStack, int par2)
     {
-        if(par1ItemStack.getItemDamage() >= EnumDyeColor.values().length)
-        {
-            return 0xFFFFFF;
-        }
-        return EnumDyeColor.byMetadata(par1ItemStack.getItemDamage()).getMapColor().colorValue;
+        return getColor(par1ItemStack);
     }
 
     @Override
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
     {
         tooltip.add(TextFormatting.DARK_PURPLE + "Whats Inside?");
+        if(getName(stack) != null)
+        {
+            tooltip.add(TextFormatting.GREEN + getName(stack).toUpperCase());
+        }
+        //TODO remove this
+        if(getColor(stack) != 0)
+        {
+            tooltip.add("" + getColor(stack));
+        }
     }
 
-    public int getColor()
+    public int getColor(ItemStack stack)
     {
-        return 0;
+        int colour = ItemNbtHelper.getInt(stack, "colour", 0);
+
+        return colour;
     }
 
-    public String getName()
+    public String getName(ItemStack stack)
     {
-        return "";
+        String name = ItemNbtHelper.getString(stack, "type", "");
+        return name;
     }
 }
