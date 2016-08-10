@@ -61,4 +61,24 @@ public class OpenLootBagsApi
             }
         }
     }
+
+    //This might work
+    public static List<ItemStack> getBagLoot(ItemStack stack)
+    {
+        if(stack.getItem() instanceof ItemLootBag)
+        {
+            ItemLootBag bag = (ItemLootBag) stack.getItem();
+            String name = bag.getName(stack);
+            for(LootMap map : OpenLootBagsApi.lootMaps)
+            {
+                if (name.matches(map.getName()))
+                {
+                    List<ItemStack> stackList = new ArrayList<ItemStack>();
+                    stackList.add(map.getStack());
+                    return stackList;
+                }
+            }
+        }
+        return null;
+    }
 }
