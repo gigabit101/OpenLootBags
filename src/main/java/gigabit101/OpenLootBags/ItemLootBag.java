@@ -49,6 +49,7 @@ public class ItemLootBag extends Item implements IColorable
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
     {
+        OpenLootBagsApi.populateBag(itemStackIn, worldIn);
         playerIn.openGui(OpenLootBags.instance, GuiHandler.bagID, worldIn, 0, 0, 0);
         return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
     }
