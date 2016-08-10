@@ -1,4 +1,4 @@
-package gigabit101.OpenLootBags.api;
+package gigabit101.openlootbag.api;
 
 import net.minecraft.item.ItemStack;
 

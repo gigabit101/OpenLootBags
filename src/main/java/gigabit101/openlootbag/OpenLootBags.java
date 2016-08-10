@@ -1,10 +1,8 @@
-package gigabit101.OpenLootBags;
+package gigabit101.openlootbag;
 
-import gigabit101.OpenLootBags.api.OpenLootBagsApi;
-import gigabit101.OpenLootBags.proxy.CommonProxy;
-import net.minecraft.init.Items;
+import gigabit101.openlootbag.api.OpenLootBagsApi;
+import gigabit101.openlootbag.proxy.CommonProxy;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -17,8 +15,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 @Mod(name = OpenLootBags.MOD_NAME, modid = OpenLootBags.MOD_ID, version = OpenLootBags.MOD_VERSION)
 public class OpenLootBags
 {
-    public static final String MOD_NAME = "openlootbags";
-    public static final String MOD_ID = "openlootbags";
+    public static final String MOD_NAME = "openlootbag";
+    public static final String MOD_ID = "openlootbag";
     public static final String MOD_VERSION = "1.0.0";
 
     public static Item lootbag;
@@ -26,7 +24,7 @@ public class OpenLootBags
     @Mod.Instance
     public static OpenLootBags instance;
 
-    @SidedProxy(clientSide = "gigabit101.OpenLootBags.proxy.ClientProxy", serverSide = "gigabit101.OpenLootBags.proxy.CommonProxy")
+    @SidedProxy(clientSide = "gigabit101.openlootbag.proxy.ClientProxy", serverSide = "gigabit101.openlootbag.proxy.CommonProxy")
     public static CommonProxy proxy;
 
     @Mod.EventHandler

@@ -1,11 +1,10 @@
-package gigabit101.OpenLootBags;
+package gigabit101.openlootbag;
 
-import gigabit101.OpenLootBags.api.IColorable;
-import gigabit101.OpenLootBags.api.ItemNbtHelper;
-import gigabit101.OpenLootBags.api.OpenLootBagsApi;
+import gigabit101.openlootbag.api.IColorable;
+import gigabit101.openlootbag.api.ItemNbtHelper;
+import gigabit101.openlootbag.api.OpenLootBagsApi;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

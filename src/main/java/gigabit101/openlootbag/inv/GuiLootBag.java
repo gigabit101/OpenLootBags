@@ -1,8 +1,7 @@
-package gigabit101.OpenLootBags.inv;
+package gigabit101.openlootbag.inv;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ResourceLocation;
 import reborncore.client.guibuilder.GuiBuilder;
 
 /**
