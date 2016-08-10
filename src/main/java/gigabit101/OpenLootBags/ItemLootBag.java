@@ -99,17 +99,11 @@ public class ItemLootBag extends Item implements IColorable
         {
             tooltip.add(TextFormatting.GREEN + getName(stack).toUpperCase());
         }
-        //TODO remove this
-        if(getColor(stack) != 0)
-        {
-            tooltip.add("" + getColor(stack));
-        }
     }
 
     public int getColor(ItemStack stack)
     {
         int colour = ItemNbtHelper.getInt(stack, "colour", 0);
-
         return colour;
     }
 

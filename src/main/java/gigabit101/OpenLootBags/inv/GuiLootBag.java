@@ -19,6 +19,12 @@ public class GuiLootBag extends GuiContainer
         this.player = player;
     }
 
+    @Override
+    public void initGui()
+    {
+        super.initGui();
+    }
+
     protected void drawGuiContainerForegroundLayer(int p_146979_1_, int p_146979_2_) {}
 
     @Override

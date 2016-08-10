@@ -12,7 +12,7 @@ import net.minecraft.util.text.ITextComponent;
  */
 public class InvLootBag implements IInventory
 {
-    private static final ItemStack[] FALLBACK_INVENTORY = new ItemStack[1];
+    private static final ItemStack[] FALLBACK_INVENTORY = new ItemStack[5];
 
     EntityPlayer player;
     int slot;

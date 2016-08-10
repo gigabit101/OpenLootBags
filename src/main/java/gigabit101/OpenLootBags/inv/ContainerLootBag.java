@@ -20,12 +20,9 @@ public class ContainerLootBag extends ContainerBase
         inv = new InvLootBag(player, slot);
 
         int j;
-        int k;
-
-        //Bags inv
         for (j = 0; j < 5; ++j)
         {
-            addSlotToContainer(new Slot(inv, j, 44 + j * 18, 15));
+            addSlotToContainer(new SlotLocked(inv, j, 44 + j * 18, 15));
         }
         addPlayersHotbar();
         addPlayersInventory();
