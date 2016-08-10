@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -28,18 +29,27 @@ public class OpenLootBags
     public static CommonProxy proxy;
 
     @Mod.EventHandler
-    public void init(FMLInitializationEvent event)
+    public void preInit(FMLPreInitializationEvent event)
     {
-        //Default bags
-        OpenLootBagsApi.addBagType("common", 10000);
-        OpenLootBagsApi.addBagType("uncommon", 90500);
-        OpenLootBagsApi.addBagType("rare", 50900);
-        OpenLootBagsApi.addBagType("epic", 20600);
-
-        LootManager.init();
+        OpenLootBagsApi.INSTANCE.setBagManager(new BagManger());
 
         lootbag = new ItemLootBag();
         GameRegistry.register(lootbag);
+    }
+
+
+    @Mod.EventHandler
+    public void init(FMLInitializationEvent event)
+    {
+        //Default bags
+        OpenLootBagsApi.INSTANCE.getBagManager().addBagType("common", 10000);
+        OpenLootBagsApi.INSTANCE.getBagManager().addBagType("uncommon", 90500);
+        OpenLootBagsApi.INSTANCE.getBagManager().addBagType("rare", 50900);
+        OpenLootBagsApi.INSTANCE.getBagManager().addBagType("epic", 20600);
+
+        LootManager.init();
+
+
         proxy.registerRenders();
         NetworkRegistry.INSTANCE.registerGuiHandler(OpenLootBags.MOD_ID, new GuiHandler());
     }

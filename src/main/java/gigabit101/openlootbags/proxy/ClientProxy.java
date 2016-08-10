@@ -19,7 +19,7 @@ public class ClientProxy extends CommonProxy
     public void registerRenders()
     {
         int i;
-        for (i = 0; i < OpenLootBagsApi.BAG_TYPES_MAP.size(); ++i)
+        for (i = 0; i < OpenLootBagsApi.INSTANCE.getBagManager().getBagTypes().size(); ++i)
         {
             Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(OpenLootBags.lootbag, i, new ModelResourceLocation("openlootbags" + ":" + "lootbag", "inventory"));
         }

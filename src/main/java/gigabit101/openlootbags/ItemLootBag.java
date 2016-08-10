@@ -11,6 +11,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import reborncore.common.util.ItemNBTHelper;
@@ -29,18 +30,18 @@ public class ItemLootBag extends Item implements IColorable
     {
         setMaxStackSize(1);
         setUnlocalizedName(OpenLootBags.MOD_NAME.toLowerCase() + ".lootbag");
-        setRegistryName("lootbag");
+        setRegistryName(new ResourceLocation("openlootbags", "lootbag"));
     }
 
     @Override
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> subItems)
     {
-        for (int meta = 0; meta < OpenLootBagsApi.BAG_TYPES.size(); ++meta)
+        for (int meta = 0; meta < OpenLootBagsApi.INSTANCE.getBagManager().getBagTypes().size(); ++meta)
         {
             ItemStack stack = new ItemStack(item, 1, meta);
-            String name = OpenLootBagsApi.BAG_TYPES.get(meta);
+            String name = OpenLootBagsApi.INSTANCE.getBagManager().getBagTypes().get(meta);
             ItemNBTHelper.setString(stack, "type", name);
-            ItemNBTHelper.setInt(stack, "colour", OpenLootBagsApi.BAG_TYPES_MAP.get(name));
+            ItemNBTHelper.setInt(stack, "colour", OpenLootBagsApi.INSTANCE.getBagManager().getBagColorMap().get(name));
             subItems.add(stack);
         }
     }
@@ -48,7 +49,7 @@ public class ItemLootBag extends Item implements IColorable
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
     {
-        OpenLootBagsApi.populateBag(itemStackIn, worldIn);
+        BagManger.populateBag(itemStackIn, worldIn);
         playerIn.openGui(OpenLootBags.instance, GuiHandler.bagID, worldIn, 0, 0, 0);
         return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
     }

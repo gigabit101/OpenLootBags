@@ -1,92 +1,40 @@
 package gigabit101.openlootbags.api;
 
-import gigabit101.openlootbags.ItemLootBag;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-
-import java.util.*;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.ModContainer;
 
 /**
  * Created by Gigabit101 on 02/08/2016.
  */
 public class OpenLootBagsApi
 {
-    public static final List<String> BAG_TYPES = new ArrayList<String>();
-    public static final Map<String, Integer> BAG_TYPES_MAP = new HashMap<String, Integer>();
 
-    public static List<LootMap> lootMaps = new ArrayList<LootMap>();
+    public static final OpenLootBagsApi INSTANCE = new OpenLootBagsApi();
 
-    public static void addBagType(String bagname, Integer bagcolour)
-    {
-        BAG_TYPES_MAP.put(bagname, bagcolour);
-        BAG_TYPES.add(bagname);
+    IBagManager bagManager;
+
+
+    /**
+     * Gets the {@Link gigabit101.openlootbags.api.IBagManager} instance that is being used
+     *
+     * @return The bag manager
+     */
+    public IBagManager getBagManager() {
+        return bagManager;
     }
 
-    public static LootMap addLoot(String bagname, ItemStack stack, int chance)
-    {
-        LootMap loot = new LootMap(bagname, stack, chance);
-        lootMaps.add(loot);
-        return loot;
-    }
+    /**
+     * Internal call to set the bag manager, will crash if you try anc call this from your mod
+     *
+     * @param bagManager The instance of the bag manager
+     */
+    public void setBagManager(IBagManager bagManager) {
+        ModContainer mc = Loader.instance().activeModContainer();
 
-    //TODO make this cleaner and use chance
-    public static void populateBag(ItemStack stack, World world)
-    {
-        if(stack.getItem() instanceof ItemLootBag)
-        {
-            ItemLootBag bag = (ItemLootBag) stack.getItem();
-            String name = bag.getName(stack);
-            ItemStack[] bagInv = bag.loadStacks(stack);
-            for(int i = 0; i < 5; i++)
-            {
-                ItemStack stackAt = bagInv[i];
-                boolean didChange = false;
-                if (stackAt == null)
-                {
-                    for(LootMap map : OpenLootBagsApi.lootMaps)
-                    {
-                        if(map.name.matches(name))
-                        {
-//                            List<ItemStack> stackList = getBagLoot(stack);
-                            int random = world.rand.nextInt(getBagLoot(stack).size());
-                            //TODO remove debug
-                            System.out.print("  Random = " + random);
-                            System.out.print("  StackList size = " + getBagLoot(stack).size());
-
-                            bagInv[i] = getBagLoot(stack).get(random).copy();
-                            didChange = true;
-                            break;
-                        }
-                    }
-                }
-                if (didChange)
-                {
-                    ItemLootBag.setStacks(stack, bagInv);
-                }
-            }
+        if (mc == null || !"openlootbags".equals(mc.getModId())) {
+            throw new IllegalAccessError("Api cannot be set using " + mc);
         }
+        this.bagManager = bagManager;
     }
 
-    //This might work
-    public static List<ItemStack> getBagLoot(ItemStack stack)
-    {
-        if(stack.getItem() instanceof ItemLootBag)
-        {
-            ItemLootBag bag = (ItemLootBag) stack.getItem();
-            String name = bag.getName(stack);
-            for(LootMap map : OpenLootBagsApi.lootMaps)
-            {
-                List<ItemStack> stackList = new ArrayList<ItemStack>();
-                for(int i = 0; i < OpenLootBagsApi.lootMaps.size(); i++)
-                {
-                    if (map.getName().matches(name))
-                    {
-                        stackList.add(map.getStack().copy());
-                    }
-                    return stackList;
-                }
-            }
-        }
-        return null;
-    }
 }

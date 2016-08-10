@@ -22,6 +22,6 @@ public class OpenLootbagsJEIPlugin extends BlankModPlugin
         registry.addRecipeCategories(new LootbagsRecipeCategory(jeiHelpers.getGuiHelper()));
         registry.addRecipeHandlers(new LootbagsRecipeHandler());
 
-        registry.addRecipes(OpenLootBagsApi.lootMaps);
+        registry.addRecipes(OpenLootBagsApi.INSTANCE.getBagManager().getAllLootMaps());
     }
 }
