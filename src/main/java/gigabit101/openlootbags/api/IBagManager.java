@@ -1,6 +1,7 @@
 package gigabit101.openlootbags.api;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -16,7 +17,7 @@ public interface IBagManager {
      * @param bagname The name of the bag to be added
      * @param bagcolour The hex color of the bag
      */
-    void addBagType(String bagname, int bagcolour);
+    void addBagType(ResourceLocation bagname, int bagcolour);
 
     /**
      * Adds an item stack to a bag
@@ -25,7 +26,7 @@ public interface IBagManager {
      * @param chance The chance of the itemstack to show up
      * @return the LootMap
      */
-    LootMap addLoot(String bagname, ItemStack stack, int chance);
+    LootMap addLoot(ResourceLocation bagname, ItemStack stack, int chance);
 
 
     /**
@@ -45,8 +46,8 @@ public interface IBagManager {
     /**
      * @return A list of all the bag types in the mod
      */
-    List<String> getBagTypes();
+    List<ResourceLocation> getBagTypes();
 
 
-    Map<String, Integer> getBagColorMap();
+    Map<ResourceLocation, Integer> getBagColorMap();
 }

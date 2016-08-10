@@ -4,6 +4,7 @@ import gigabit101.openlootbags.api.IBagManager;
 import gigabit101.openlootbags.api.LootMap;
 import gigabit101.openlootbags.api.OpenLootBagsApi;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 import java.util.*;
@@ -13,19 +14,24 @@ import java.util.*;
  */
 public class BagManger implements IBagManager {
 
-    public final List<String> BAG_TYPES = new ArrayList<String>();
-    public final Map<String, Integer> BAG_TYPES_MAP = new HashMap<String, Integer>();
+    public final List<ResourceLocation> BAG_TYPES = new ArrayList<ResourceLocation>();
+    public final Map<ResourceLocation, Integer> BAG_TYPES_MAP = new HashMap<ResourceLocation, Integer>();
 
     public List<LootMap> lootMaps = new ArrayList<LootMap>();
 
     @Override
-    public void addBagType(String bagname, int bagcolour) {
+    public void addBagType(ResourceLocation bagname, int bagcolour) {
+        for(ResourceLocation location : BAG_TYPES){
+            if(location.equals(bagname)){
+                throw new RuntimeException(bagname + " all ready exits");
+            }
+        }
         BAG_TYPES_MAP.put(bagname, bagcolour);
         BAG_TYPES.add(bagname);
     }
 
     @Override
-    public LootMap addLoot(String bagname, ItemStack stack, int chance) {
+    public LootMap addLoot(ResourceLocation bagname, ItemStack stack, int chance) {
         LootMap loot = new LootMap(bagname, stack, chance);
         lootMaps.add(loot);
         return loot;
@@ -36,7 +42,7 @@ public class BagManger implements IBagManager {
         if(stack.getItem() instanceof ItemLootBag)
         {
             ItemLootBag bag = (ItemLootBag) stack.getItem();
-            String name = bag.getName(stack);
+            ResourceLocation name = bag.getName(stack);
             System.out.println(lootMaps);
             List<ItemStack> stackList = new ArrayList<ItemStack>();
             for(LootMap map : lootMaps)
@@ -57,12 +63,12 @@ public class BagManger implements IBagManager {
     }
 
     @Override
-    public List<String> getBagTypes() {
+    public List<ResourceLocation> getBagTypes() {
         return Collections.unmodifiableList(BAG_TYPES);
     }
 
     @Override
-    public Map<String, Integer> getBagColorMap() {
+    public Map<ResourceLocation, Integer> getBagColorMap() {
         return Collections.unmodifiableMap(BAG_TYPES_MAP);
     }
 
@@ -72,7 +78,7 @@ public class BagManger implements IBagManager {
         if(stack.getItem() instanceof ItemLootBag)
         {
             ItemLootBag bag = (ItemLootBag) stack.getItem();
-            String name = bag.getName(stack);
+            ResourceLocation name = bag.getName(stack);
             ItemStack[] bagInv = bag.loadStacks(stack);
             for(int i = 0; i < 5; i++)
             {

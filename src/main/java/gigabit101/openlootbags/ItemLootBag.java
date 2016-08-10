@@ -39,8 +39,9 @@ public class ItemLootBag extends Item implements IColorable
         for (int meta = 0; meta < OpenLootBagsApi.INSTANCE.getBagManager().getBagTypes().size(); ++meta)
         {
             ItemStack stack = new ItemStack(item, 1, meta);
-            String name = OpenLootBagsApi.INSTANCE.getBagManager().getBagTypes().get(meta);
-            ItemNBTHelper.setString(stack, "type", name);
+            ResourceLocation name = OpenLootBagsApi.INSTANCE.getBagManager().getBagTypes().get(meta);
+            ItemNBTHelper.setString(stack, "typeName", name.getResourcePath());
+            ItemNBTHelper.setString(stack, "typeDomain", name.getResourceDomain());
             ItemNBTHelper.setInt(stack, "colour", OpenLootBagsApi.INSTANCE.getBagManager().getBagColorMap().get(name));
             subItems.add(stack);
         }
@@ -98,7 +99,7 @@ public class ItemLootBag extends Item implements IColorable
         tooltip.add(TextFormatting.DARK_PURPLE + "Whats Inside?");
         if(getName(stack) != null)
         {
-            tooltip.add(TextFormatting.GREEN + getName(stack).toUpperCase());
+            tooltip.add(TextFormatting.GREEN + getName(stack).getResourcePath().toUpperCase());
         }
     }
 
@@ -108,9 +109,10 @@ public class ItemLootBag extends Item implements IColorable
         return colour;
     }
 
-    public String getName(ItemStack stack)
+    public ResourceLocation getName(ItemStack stack)
     {
-        String name = ItemNBTHelper.getString(stack, "type", "");
-        return name;
+        String domain = ItemNBTHelper.getString(stack, "typeDomain", "");
+        String name = ItemNBTHelper.getString(stack, "typeName", "");
+        return new ResourceLocation(domain, name);
     }
 }

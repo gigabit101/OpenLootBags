@@ -3,6 +3,7 @@ package gigabit101.openlootbags;
 import gigabit101.openlootbags.api.OpenLootBagsApi;
 import gigabit101.openlootbags.proxy.CommonProxy;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -42,10 +43,10 @@ public class OpenLootBags
     public void init(FMLInitializationEvent event)
     {
         //Default bags
-        OpenLootBagsApi.INSTANCE.getBagManager().addBagType("common", 10000);
-        OpenLootBagsApi.INSTANCE.getBagManager().addBagType("uncommon", 90500);
-        OpenLootBagsApi.INSTANCE.getBagManager().addBagType("rare", 50900);
-        OpenLootBagsApi.INSTANCE.getBagManager().addBagType("epic", 20600);
+        OpenLootBagsApi.INSTANCE.getBagManager().addBagType(new ResourceLocation("openlootbags", "common"), 10000);
+        OpenLootBagsApi.INSTANCE.getBagManager().addBagType(new ResourceLocation("openlootbags", "uncommon"), 90500);
+        OpenLootBagsApi.INSTANCE.getBagManager().addBagType(new ResourceLocation("openlootbags", "rare"), 50900);
+        OpenLootBagsApi.INSTANCE.getBagManager().addBagType(new ResourceLocation("openlootbags", "epic"), 20600);
 
         LootManager.init();
 
