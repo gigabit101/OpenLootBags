@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
  */
 public class LootMap
 {
-    String name;
+    public String name;
     ItemStack stack;
     int chance;
 

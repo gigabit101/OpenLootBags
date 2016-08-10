@@ -13,10 +13,10 @@ import java.util.*;
  */
 public class BagManger implements IBagManager {
 
-    public static final List<String> BAG_TYPES = new ArrayList<String>();
-    public static final Map<String, Integer> BAG_TYPES_MAP = new HashMap<String, Integer>();
+    public final List<String> BAG_TYPES = new ArrayList<String>();
+    public final Map<String, Integer> BAG_TYPES_MAP = new HashMap<String, Integer>();
 
-    public static List<LootMap> lootMaps = new ArrayList<LootMap>();
+    public List<LootMap> lootMaps = new ArrayList<LootMap>();
 
     @Override
     public void addBagType(String bagname, int bagcolour) {
@@ -37,20 +37,18 @@ public class BagManger implements IBagManager {
         {
             ItemLootBag bag = (ItemLootBag) stack.getItem();
             String name = bag.getName(stack);
+            System.out.println(lootMaps);
+            List<ItemStack> stackList = new ArrayList<ItemStack>();
             for(LootMap map : lootMaps)
             {
-                List<ItemStack> stackList = new ArrayList<ItemStack>();
-                for(int i = 0; i < lootMaps.size(); i++)
+                if (map.getName().equals(name))
                 {
-                    if (map.getName().matches(name))
-                    {
-                        stackList.add(map.getStack().copy());
-                    }
-                    return stackList;
+                    stackList.add(map.getStack().copy());
                 }
             }
+            return stackList;
         }
-        return null;
+        return Collections.emptyList();
     }
 
     @Override
@@ -82,19 +80,22 @@ public class BagManger implements IBagManager {
                 boolean didChange = false;
                 if (stackAt == null)
                 {
-                    for(LootMap map : lootMaps)
+                    for(LootMap map : OpenLootBagsApi.INSTANCE.getBagManager().getAllLootMaps())
                     {
-                        if(map.getName().matches(name))
+                        if(map.getName().equals(name))
                         {
-//                            List<ItemStack> stackList = getBagLoot(stack);
-                            int random = world.rand.nextInt(OpenLootBagsApi.INSTANCE.getBagManager().getBagLoot(stack).size());
-                            //TODO remove debug
-                            System.out.print("  Random = " + random);
-                            System.out.print("  StackList size = " + OpenLootBagsApi.INSTANCE.getBagManager().getBagLoot(stack).size());
+                            List<ItemStack> stackList = OpenLootBagsApi.INSTANCE.getBagManager().getBagLoot(stack);
+                            if(!stackList.isEmpty()){
+                                System.out.println(stackList);
+                                int random = world.rand.nextInt(stackList.size());
+                                //TODO remove debug
+                                System.out.print("  Random = " + random);
+                                System.out.print("  StackList size = " + stackList.size());
 
-                            bagInv[i] = OpenLootBagsApi.INSTANCE.getBagManager().getBagLoot(stack).get(random).copy();
-                            didChange = true;
-                            break;
+                                bagInv[i] = stackList.get(random).copy();
+                                didChange = true;
+                                break;
+                            }
                         }
                     }
                 }
