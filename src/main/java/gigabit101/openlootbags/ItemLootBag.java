@@ -1,7 +1,6 @@
 package gigabit101.openlootbags;
 
 import gigabit101.openlootbags.api.IColorable;
-import gigabit101.openlootbags.api.ItemNbtHelper;
 import gigabit101.openlootbags.api.OpenLootBagsApi;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,6 +13,7 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import reborncore.common.util.ItemNBTHelper;
 
 import java.util.List;
 
@@ -39,8 +39,8 @@ public class ItemLootBag extends Item implements IColorable
         {
             ItemStack stack = new ItemStack(item, 1, meta);
             String name = OpenLootBagsApi.BAG_TYPES.get(meta);
-            ItemNbtHelper.setString(stack, "type", name);
-            ItemNbtHelper.setInt(stack, "colour", OpenLootBagsApi.BAG_TYPES_MAP.get(name));
+            ItemNBTHelper.setString(stack, "type", name);
+            ItemNBTHelper.setInt(stack, "colour", OpenLootBagsApi.BAG_TYPES_MAP.get(name));
             subItems.add(stack);
         }
     }
@@ -55,7 +55,7 @@ public class ItemLootBag extends Item implements IColorable
 
     public static ItemStack[] loadStacks(ItemStack stack)
     {
-        NBTTagList var2 = ItemNbtHelper.getList(stack, TAG_ITEMS, 10, false);
+        NBTTagList var2 = ItemNBTHelper.getList(stack, TAG_ITEMS, 10, false);
         ItemStack[] inventorySlots = new ItemStack[5];
         for(int var3 = 0; var3 < var2.tagCount(); ++var3)
         {
@@ -81,7 +81,7 @@ public class ItemLootBag extends Item implements IColorable
                 inventorySlots[var3].writeToNBT(var4);
                 var2.appendTag(var4);
             }
-            ItemNbtHelper.setList(stack, TAG_ITEMS, var2);
+            ItemNBTHelper.setList(stack, TAG_ITEMS, var2);
         }
     }
 
@@ -103,13 +103,13 @@ public class ItemLootBag extends Item implements IColorable
 
     public int getColor(ItemStack stack)
     {
-        int colour = ItemNbtHelper.getInt(stack, "colour", 0);
+        int colour = ItemNBTHelper.getInt(stack, "colour", 0);
         return colour;
     }
 
     public String getName(ItemStack stack)
     {
-        String name = ItemNbtHelper.getString(stack, "type", "");
+        String name = ItemNBTHelper.getString(stack, "type", "");
         return name;
     }
 }

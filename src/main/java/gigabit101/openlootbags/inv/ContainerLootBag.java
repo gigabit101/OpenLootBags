@@ -2,11 +2,12 @@ package gigabit101.openlootbags.inv;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Slot;
+import reborncore.common.container.RebornContainer;
 
 /**
  * Created by Gigabit101 on 02/08/2016.
  */
-public class ContainerLootBag extends ContainerBase
+public class ContainerLootBag extends RebornContainer
 {
     public InvLootBag inv;
     public EntityPlayer player;
