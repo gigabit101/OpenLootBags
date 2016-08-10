@@ -1,7 +1,7 @@
-package gigabit101.openlootbag.inv;
+package gigabit101.openlootbags.inv;
 
-import gigabit101.openlootbag.ItemLootBag;
-import gigabit101.openlootbag.OpenLootBags;
+import gigabit101.openlootbags.ItemLootBag;
+import gigabit101.openlootbags.OpenLootBags;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;

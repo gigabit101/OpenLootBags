@@ -1,6 +1,6 @@
-package gigabit101.openlootbag.api;
+package gigabit101.openlootbags.api;
 
-import gigabit101.openlootbag.ItemLootBag;
+import gigabit101.openlootbags.ItemLootBag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 

@@ -1,4 +1,4 @@
-package gigabit101.openlootbag.inv;
+package gigabit101.openlootbags.inv;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;

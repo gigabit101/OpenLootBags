@@ -1,8 +1,8 @@
-package gigabit101.openlootbag;
+package gigabit101.openlootbags;
 
-import gigabit101.openlootbag.api.IColorable;
-import gigabit101.openlootbag.api.ItemNbtHelper;
-import gigabit101.openlootbag.api.OpenLootBagsApi;
+import gigabit101.openlootbags.api.IColorable;
+import gigabit101.openlootbags.api.ItemNbtHelper;
+import gigabit101.openlootbags.api.OpenLootBagsApi;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

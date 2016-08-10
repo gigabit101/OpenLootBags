@@ -1,7 +1,7 @@
-package gigabit101.openlootbag;
+package gigabit101.openlootbags;
 
-import gigabit101.openlootbag.inv.ContainerLootBag;
-import gigabit101.openlootbag.inv.GuiLootBag;
+import gigabit101.openlootbags.inv.ContainerLootBag;
+import gigabit101.openlootbags.inv.GuiLootBag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;

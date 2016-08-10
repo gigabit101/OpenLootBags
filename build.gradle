@@ -24,7 +24,7 @@ if (ENV.BUILD_NUMBER) {
 }
 
 group= "com.gigabit101.voidworlds" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "openlootbag"
+archivesBaseName = "openlootbags"
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -86,7 +86,7 @@ jar {
 task apiJar(type: Jar) {
     from sourceSets.main.allSource
     from sourceSets.main.output
-        include 'gigabit101/openlootbag/api/**/*'
+        include 'gigabit101/openlootbags/api/**/*'
 
     classifier = "api"
 }
@@ -114,27 +114,27 @@ uploadArchives {
            repository(url: "file:///var/www/maven/")
         }
             pom {
-                groupId = "openlootbag"
+                groupId = "openlootbags"
                 version = project.version
                 artifactId = project.archivesBaseName
                 project {
                     name project.archivesBaseName
                     packaging 'jar'
-                    description 'openlootbag'
-                    url 'https://github.com/gigabit101/openlootbag'
+                    description 'openlootbags'
+                    url 'https://github.com/gigabit101/openlootbags'
                     scm {
-                        url 'https://github.com/gigabit101/openlootbag'
-                        connection 'scm:git:git@github.com:gigabit101/openlootbag.git'
-                        developerConnection 'scm:git:git@github.com:gigabit101/openlootbag.git'
+                        url 'https://github.com/gigabit101/openlootbags'
+                        connection 'scm:git:git@github.com:gigabit101/openlootbags.git'
+                        developerConnection 'scm:git:git@github.com:gigabit101/openlootbags.git'
                     }
                     issueManagement {
                         system 'github'
-                        url 'https://github.com/gigabit101/openlootbag/issues'
+                        url 'https://github.com/gigabit101/openlootbags/issues'
                     }
                     licenses {
                         license {
                             name 'License'
-                            url 'https://raw.githubusercontent.com/gigabit101/openlootbag/master/LICENSE.md'
+                            url 'https://raw.githubusercontent.com/gigabit101/openlootbags/master/LICENSE.md'
                             distribution 'repo'
                         }
                     }

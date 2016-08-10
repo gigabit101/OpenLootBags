@@ -1,4 +1,4 @@
-package gigabit101.openlootbag.compat;
+package gigabit101.openlootbags.compat;
 
 /**
  * Created by Gigabit101 on 10/08/2016.

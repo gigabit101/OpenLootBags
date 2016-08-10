@@ -1,8 +1,8 @@
-package gigabit101.openlootbag.compat.jei;
+package gigabit101.openlootbags.compat.jei;
 
 import com.google.common.collect.ImmutableList;
-import gigabit101.openlootbag.OpenLootBags;
-import gigabit101.openlootbag.api.LootMap;
+import gigabit101.openlootbags.OpenLootBags;
+import gigabit101.openlootbags.api.LootMap;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;

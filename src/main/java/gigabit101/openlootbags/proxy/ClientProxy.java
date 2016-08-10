@@ -1,8 +1,8 @@
-package gigabit101.openlootbag.proxy;
+package gigabit101.openlootbags.proxy;
 
-import gigabit101.openlootbag.OpenLootBags;
-import gigabit101.openlootbag.api.IColorable;
-import gigabit101.openlootbag.api.OpenLootBagsApi;
+import gigabit101.openlootbags.OpenLootBags;
+import gigabit101.openlootbags.api.IColorable;
+import gigabit101.openlootbags.api.OpenLootBagsApi;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.color.IItemColor;
@@ -21,7 +21,7 @@ public class ClientProxy extends CommonProxy
         int i;
         for (i = 0; i < OpenLootBagsApi.BAG_TYPES_MAP.size(); ++i)
         {
-            Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(OpenLootBags.lootbag, i, new ModelResourceLocation("openlootbag" + ":" + "lootbag", "inventory"));
+            Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(OpenLootBags.lootbag, i, new ModelResourceLocation("openlootbags" + ":" + "lootbag", "inventory"));
         }
 
         ItemColors items = Minecraft.getMinecraft().getItemColors();

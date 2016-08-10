@@ -1,4 +1,4 @@
-package gigabit101.openlootbag.compat.jei;
+package gigabit101.openlootbags.compat.jei;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
@@ -27,7 +27,7 @@ public class LootbagsRecipeCategory implements IRecipeCategory
     public LootbagsRecipeCategory(IGuiHelper guiHelper)
     {
         background = guiHelper.createDrawable(texture, 45, 28, 86, 39);
-        title = I18n.translateToLocal("openlootbag.jei.category.lootbags");
+        title = I18n.translateToLocal("openlootbags.jei.category.lootbags");
     }
 
     @Nonnull

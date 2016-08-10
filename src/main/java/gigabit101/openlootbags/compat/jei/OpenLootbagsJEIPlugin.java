@@ -1,6 +1,6 @@
-package gigabit101.openlootbag.compat.jei;
+package gigabit101.openlootbags.compat.jei;
 
-import gigabit101.openlootbag.api.OpenLootBagsApi;
+import gigabit101.openlootbags.api.OpenLootBagsApi;
 import mezz.jei.api.BlankModPlugin;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModRegistry;

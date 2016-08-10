@@ -1,4 +1,4 @@
-package gigabit101.openlootbag.proxy;
+package gigabit101.openlootbags.proxy;
 
 /**
  * Created by Gigabit101 on 02/08/2016.

@@ -1,6 +1,6 @@
-package gigabit101.openlootbag.compat.jei;
+package gigabit101.openlootbags.compat.jei;
 
-import gigabit101.openlootbag.api.LootMap;
+import gigabit101.openlootbags.api.LootMap;
 import mezz.jei.api.recipe.IRecipeHandler;
 import mezz.jei.api.recipe.IRecipeWrapper;
 
