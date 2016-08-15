@@ -50,7 +50,6 @@ public class OpenLootBags
 
         LootManager.init();
 
-
         proxy.registerRenders();
         NetworkRegistry.INSTANCE.registerGuiHandler(OpenLootBags.MOD_ID, new GuiHandler());
     }

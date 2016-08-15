@@ -50,7 +50,8 @@ public class ItemLootBag extends Item implements IColorable
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
     {
-        if(!ItemNBTHelper.verifyExistance(itemStackIn, "opened")) {
+        if(!ItemNBTHelper.verifyExistance(itemStackIn, "opened"))
+        {
             BagManger.populateBag(itemStackIn, worldIn);
             ItemNBTHelper.setBoolean(itemStackIn, "opened", true);
         }

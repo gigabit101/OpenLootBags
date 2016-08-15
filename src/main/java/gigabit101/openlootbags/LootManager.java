@@ -20,13 +20,19 @@ public class LootManager
         OpenLootBagsApi.INSTANCE.getBagManager().addLoot(new ResourceLocation("openlootbags", "common"), new ItemStack(Items.WHEAT), 50);
         OpenLootBagsApi.INSTANCE.getBagManager().addLoot(new ResourceLocation("openlootbags", "common"), new ItemStack(Items.APPLE), 40);
         OpenLootBagsApi.INSTANCE.getBagManager().addLoot(new ResourceLocation("openlootbags", "common"), new ItemStack(Items.STICK), 80);
+
         //uncommon
         OpenLootBagsApi.INSTANCE.getBagManager().addLoot(new ResourceLocation("openlootbags", "uncommon"), new ItemStack(Items.BUCKET), 16);
-        OpenLootBagsApi.INSTANCE.getBagManager().addLoot(new ResourceLocation("openlootbags", "common"), new ItemStack(Items.BUCKET), 6);
+        OpenLootBagsApi.INSTANCE.getBagManager().addLoot(new ResourceLocation("openlootbags", "uncommon"), new ItemStack(Items.ITEM_FRAME), 16);
+        OpenLootBagsApi.INSTANCE.getBagManager().addLoot(new ResourceLocation("openlootbags", "uncommon"), new ItemStack(Items.CARROT), 16);
+        OpenLootBagsApi.INSTANCE.getBagManager().addLoot(new ResourceLocation("openlootbags", "uncommon"), new ItemStack(Items.POTATO), 16);
+        OpenLootBagsApi.INSTANCE.getBagManager().addLoot(new ResourceLocation("openlootbags", "uncommon"), new ItemStack(Items.COOKED_PORKCHOP), 16);
 
         //rare
         OpenLootBagsApi.INSTANCE.getBagManager().addLoot(new ResourceLocation("openlootbags", "rare"), new ItemStack(Items.BLAZE_ROD), 20);
         OpenLootBagsApi.INSTANCE.getBagManager().addLoot(new ResourceLocation("openlootbags", "rare"), new ItemStack(Items.CARROT_ON_A_STICK), 60);
+        OpenLootBagsApi.INSTANCE.getBagManager().addLoot(new ResourceLocation("openlootbags", "rare"), new ItemStack(Items.GHAST_TEAR), 60);
+        OpenLootBagsApi.INSTANCE.getBagManager().addLoot(new ResourceLocation("openlootbags", "rare"), new ItemStack(Items.SLIME_BALL), 60);
 
         //epic
         OpenLootBagsApi.INSTANCE.getBagManager().addLoot(new ResourceLocation("openlootbags", "epic"), new ItemStack(Items.EMERALD), 10);

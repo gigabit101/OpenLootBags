@@ -43,7 +43,6 @@ public class BagManger implements IBagManager {
         {
             ItemLootBag bag = (ItemLootBag) stack.getItem();
             ResourceLocation name = bag.getName(stack);
-            System.out.println(lootMaps);
             List<ItemStack> stackList = new ArrayList<ItemStack>();
             for(LootMap map : lootMaps)
             {
@@ -72,7 +71,6 @@ public class BagManger implements IBagManager {
         return Collections.unmodifiableMap(BAG_TYPES_MAP);
     }
 
-    //TODO make this cleaner and use chance
     public static void populateBag(ItemStack stack, World world)
     {
         if(stack.getItem() instanceof ItemLootBag)
@@ -92,12 +90,7 @@ public class BagManger implements IBagManager {
                         {
                             List<ItemStack> stackList = OpenLootBagsApi.INSTANCE.getBagManager().getBagLoot(stack);
                             if(!stackList.isEmpty()){
-                                System.out.println(stackList);
                                 int random = world.rand.nextInt(stackList.size());
-                                //TODO remove debug
-                                System.out.print("  Random = " + random);
-                                System.out.print("  StackList size = " + stackList.size());
-
                                 bagInv[i] = stackList.get(random).copy();
                                 didChange = true;
                                 break;
