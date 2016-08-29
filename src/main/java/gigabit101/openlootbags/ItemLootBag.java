@@ -14,9 +14,11 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraft.world.storage.loot.conditions.RandomChance;
 import reborncore.common.util.ItemNBTHelper;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Gigabit101 on 02/08/2016.
