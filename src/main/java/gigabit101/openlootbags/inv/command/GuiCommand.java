@@ -1,9 +1,13 @@
 package gigabit101.openlootbags.inv.command;
 
+import gigabit101.openlootbags.packets.PacketSaveItem;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import reborncore.client.guibuilder.GuiBuilder;
+import reborncore.common.network.NetworkManager;
 
 /**
  * Created by Gigabit101 on 29/08/2016.
@@ -35,4 +39,10 @@ public class GuiCommand extends GuiContainer
         buttonList.add(new GuiButton(2, guiLeft + 30, guiTop + 18, 40, 20, "ADD"));
         buttonList.add(new GuiButton(3, guiLeft + 30, guiTop + 58, 40, 20, "REMOVE"));
     }
+
+	@Override
+	public void onGuiClosed() {
+		super.onGuiClosed();
+		NetworkManager.sendToServer(new PacketSaveItem("hello", new ItemStack(Blocks.DIAMOND_BLOCK), 0.25F));
+	}
 }

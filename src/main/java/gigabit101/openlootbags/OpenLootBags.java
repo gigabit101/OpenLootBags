@@ -1,18 +1,23 @@
 package gigabit101.openlootbags;
 
 import gigabit101.openlootbags.api.OpenLootBagsApi;
+import gigabit101.openlootbags.packets.PacketSaveItem;
 import gigabit101.openlootbags.proxy.CommonProxy;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootTableList;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 import reborncore.RebornRegistry;
+import reborncore.common.network.RegisterPacketEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +47,7 @@ public class OpenLootBags
 
         lootbag = new ItemLootBag();
         GameRegistry.register(lootbag);
+	    MinecraftForge.EVENT_BUS.register(this);
     }
 
 
@@ -85,4 +91,9 @@ public class OpenLootBags
             RebornRegistry.addLoot(item, chance, all.get(j));
         }
     }
+
+	@SubscribeEvent
+	public void loadPackets(RegisterPacketEvent event){
+		event.registerPacket(PacketSaveItem.class, Side.SERVER);
+	}
 }
