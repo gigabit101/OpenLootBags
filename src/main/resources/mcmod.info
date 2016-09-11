@@ -1,13 +1,13 @@
 [
 {
-  "modid": "VoidWorlds",
-  "name": "VoidWorlds",
+  "modid": "OpenLootBags",
+  "name": "OpenLootBags",
   "description": "",
-  "version": "1.0.0",
+  "version": "alpha1",
   "url": "",
   "updateUrl": "",
   "authorList": [
-    "Gigabit101"
+    "Gigabit101", "modmuss50"
     
   ],
   "credits": "",

@@ -4,8 +4,6 @@ import gigabit101.openlootbags.api.OpenLootBagsApi;
 import gigabit101.openlootbags.packets.PacketSaveItem;
 import gigabit101.openlootbags.proxy.CommonProxy;
 import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -16,13 +14,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
-import reborncore.RebornRegistry;
 import reborncore.common.network.RegisterPacketEvent;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Gigabit101 on 02/08/2016.
@@ -32,7 +27,7 @@ public class OpenLootBags
 {
     public static final String MOD_NAME = "openlootbags";
     public static final String MOD_ID = "openlootbags";
-    public static final String MOD_VERSION = "1.0.0";
+    public static final String MOD_VERSION = "alpha1";
 
     public static Item lootbag;
 
@@ -52,6 +47,7 @@ public class OpenLootBags
         lootbag = new ItemLootBag();
         GameRegistry.register(lootbag);
 	    MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(MobDropHandler.instance);
     }
 
 
@@ -67,26 +63,6 @@ public class OpenLootBags
     public void serverstarting(FMLServerStartingEvent event)
     {
         event.registerServerCommand(new CommandOpenLootBags());
-    }
-
-    public void addToAll(Item item, int chance)
-    {
-        List<ResourceLocation> all = new ArrayList<ResourceLocation>();
-        all.add(LootTableList.ENTITIES_BLAZE);
-        all.add(LootTableList.ENTITIES_CAVE_SPIDER);
-        all.add(LootTableList.ENTITIES_CREEPER);
-        all.add(LootTableList.ENTITIES_ENDERMAN);
-        all.add(LootTableList.ENTITIES_MAGMA_CUBE);
-        all.add(LootTableList.ENTITIES_ZOMBIE);
-        all.add(LootTableList.ENTITIES_ZOMBIE_HORSE);
-        all.add(LootTableList.ENTITIES_ZOMBIE_PIGMAN);
-        all.add(LootTableList.ENTITIES_SKELETON);
-
-        int j;
-        for (j = 0; j < all.size(); ++j)
-        {
-            RebornRegistry.addLoot(item, chance, all.get(j));
-        }
     }
 
 	@SubscribeEvent

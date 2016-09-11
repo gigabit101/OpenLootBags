@@ -33,6 +33,7 @@ public class ItemLootBag extends Item implements IColorable
         setMaxStackSize(1);
         setUnlocalizedName(OpenLootBags.MOD_NAME.toLowerCase() + ".lootbag");
         setRegistryName(new ResourceLocation("openlootbags", "lootbag"));
+        setHasSubtypes(true);
     }
 
     @Override
@@ -54,7 +55,8 @@ public class ItemLootBag extends Item implements IColorable
     {
         if(!ItemNBTHelper.verifyExistance(itemStackIn, "opened"))
         {
-            BagManger.populateBag(itemStackIn, worldIn);
+            if(!worldIn.isRemote)
+                BagManger.populateBag(itemStackIn, worldIn);
             ItemNBTHelper.setBoolean(itemStackIn, "opened", true);
         }
         playerIn.openGui(OpenLootBags.instance, GuiHandler.bagID, worldIn, 0, 0, 0);
