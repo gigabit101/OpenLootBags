@@ -6,6 +6,7 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import reborncore.client.guibuilder.GuiBuilder;
 import reborncore.common.network.NetworkManager;
 
@@ -43,6 +44,6 @@ public class GuiCommand extends GuiContainer
 	@Override
 	public void onGuiClosed() {
 		super.onGuiClosed();
-		NetworkManager.sendToServer(new PacketSaveItem("hello", new ItemStack(Blocks.DIAMOND_BLOCK), 0.25F));
+		NetworkManager.sendToServer(new PacketSaveItem(new ResourceLocation("test", "test"), new ItemStack(Blocks.DIAMOND_BLOCK), 0.25F));
 	}
 }

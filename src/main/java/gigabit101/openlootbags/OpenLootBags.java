@@ -19,6 +19,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import reborncore.RebornRegistry;
 import reborncore.common.network.RegisterPacketEvent;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +46,8 @@ public class OpenLootBags
     public void preInit(FMLPreInitializationEvent event)
     {
         OpenLootBagsApi.INSTANCE.setBagManager(new BagManger());
+	    LootManager.bagFile = new File(new File(event.getModConfigurationDirectory(), "openlootbags"), "bags.json");
+	    LootManager.lootFile = new File(new File(event.getModConfigurationDirectory(), "openlootbags"), "loot.json");
 
         lootbag = new ItemLootBag();
         GameRegistry.register(lootbag);
@@ -52,15 +56,8 @@ public class OpenLootBags
 
 
     @Mod.EventHandler
-    public void init(FMLInitializationEvent event)
-    {
-        //Default bags
-        OpenLootBagsApi.INSTANCE.getBagManager().addBagType(new ResourceLocation("openlootbags", "common"), 10000);
-        OpenLootBagsApi.INSTANCE.getBagManager().addBagType(new ResourceLocation("openlootbags", "uncommon"), 90500);
-        OpenLootBagsApi.INSTANCE.getBagManager().addBagType(new ResourceLocation("openlootbags", "rare"), 50900);
-        OpenLootBagsApi.INSTANCE.getBagManager().addBagType(new ResourceLocation("openlootbags", "epic"), 20600);
-
-        LootManager.init();
+    public void init(FMLInitializationEvent event) throws IOException {
+        LootManager.loadConfig();
 
         proxy.registerRenders();
         NetworkRegistry.INSTANCE.registerGuiHandler(OpenLootBags.MOD_ID, new GuiHandler());
